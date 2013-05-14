@@ -1,0 +1,65 @@
+<!--
+Copyright 2013 The Toolkitchen Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<!--
+/**
+* Aux Elements
+*
+* @module Aux Elements
+*/  
+/**
+ * polymer-ui-icon is a 24x24 glyph expressed as a background-image.
+ *
+ * Example:
+ *
+ *     <polymer-ui-icon src="star.png"></polymer-ui-icon>
+ *
+ * Optionally can use other size like 32x32 by setting the attribute "size" to "32":
+ *
+ *     <polymer-ui-icon src="big_star.png" size="32"></polymer-ui-icon>
+ *
+ * @class polymer-ui-icon
+ */
+-->
+<element name="polymer-ui-icon" attributes="src size index theme">
+  <link rel="stylesheet" href="polymer-ui-icon.css">
+  <template>
+    <div id="icon"></div>
+  </template>
+  <script>
+    Polymer.register(this, {
+      /**
+       * The URL of an image for the icon.
+       *
+       * @attribute src
+       * @type string
+       * @default ''
+       */
+      src: '',
+      /**
+       * Specifies the size of the icon.
+       *
+       * @attribute size
+       * @type string
+       * @default 24
+       */
+      size: 24,
+      index: -1,
+      theme: '',
+      applyAuthorStyles: true,
+      indexChanged: function() {
+        this.$.icon.classList.add('polymer-ui-icons');
+        this.$.icon.setAttribute('style', 'background-position-y: ' +  (-this.size * this.index) + 'px');
+      },
+      srcChanged: function() {
+        this.$.icon.classList.remove('polymer-ui-icons');
+        this.$.icon.setAttribute('style', 'background-image:url(' + this.src + ');');
+      },
+      themeChanged: function(old) {
+        this.$.icon.classList.switch(old, this.theme);
+      }
+    });
+  </script>
+</element>
