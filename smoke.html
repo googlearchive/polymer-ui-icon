@@ -29,9 +29,10 @@
         </span>
       </template>
     </div>
+    <polymer-ui-icon id="meta"></polymer-ui-icon>
     <script>
       addEventListener('WebComponentsReady', function() {
-        var icons = Object.keys(document.createElement('polymer-ui-icon').icons);
+        var icons = Object.keys(document.querySelector('#meta').getIconset().iconMap);
         var plates = document.querySelectorAll('template');
         for (var i = 0, p; p=plates[i]; i++) {
           p.model = icons;
